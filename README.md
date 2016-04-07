@@ -3,10 +3,10 @@
 ## Overview
 This is a Lua module that is designed to add easy saving & loading of user settings in a Corona SDK project. Settings are saved to the app's documents directory as a set of 2 text files:
 
-1. *settings.data* is a base64-encoded JSON string containing key/value pairs that you define in your code. Not user-readable without decoding, but easily decoded, and hence able to be tampered with.
-2. *_settings.data* is a SHA-512 hash of that same JSON string, used to check for any tampering.
+1. `settings.data` is a base64-encoded JSON string containing key/value pairs that you define in your code.
+2. `_settings.data` is a SHA-512 hash of that same JSON string, used to check for any tampering.
 
-While savvy users could technically dig into their settings file and read the key/value pairs within, they would not be able modify those settings for use in the app, because the module reverts user settings to your pre-defined defaults if it detects that tampering has occurred.
+While savvy users could technically dig into their settings file and modify the key/value pairs within `settings.data`, the module prevents tampering by checking that a fresh hash of `settings.data` matches the saved hash and reverts user settings to your pre-defined defaults if they do not. Since the key used to generate the hash is not stored in the save files, users will not be able to recreate a matching hash.
 
 
 ## How to use
@@ -16,7 +16,7 @@ While savvy users could technically dig into their settings file and read the ke
 
 3. Overwrite settings values anywhere in your code by declaring an updated property of the `settings` table. Or add new key/value pairs as needed.
 
-4. Save those settings to disk as needed using `settings.save()`. *Note that the module does not auto-save your settings.* This is by design - I want you to have complete control over when to commit your settings to disk.
+4. Save those settings to disk as needed using `settings.save()`. **Note that the module does not auto-save your settings.** This is by design - I want you to have complete control over when to commit your settings to disk.
 
 ```lua
 -- require module & set encryption key
@@ -64,9 +64,9 @@ settings.init({
   }
 })
 ```
->
+
 ### settings.save()
-Converts your settings table to a JSON string, then saves that string (`settings.data`) and a hash of it (`_settings.data`) to the app's documents directory.
+> Converts your settings table to a JSON string, then saves that string (`settings.data`) and a hash of it (`_settings.data`) to the app's documents directory.
 >
 > #### Arguments
 > This function accepts no arguments.
