@@ -1,4 +1,4 @@
-# corona-settings by schroederapps
+# corona-settings by Jason Schroeder
 
 ## Overview
 This is a Lua module that is designed to add easy saving & loading of user settings in a Corona SDK project. Settings are saved to the app's documents directory as a set of 2 text files:
