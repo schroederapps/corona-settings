@@ -6,9 +6,9 @@ local hashKey = "schroederapps"
 local defaults = {}
 
 local setDefaults, reset, save, load
---------------------------------------------------------------------------------
+----------------------------------------
 -- DEFINE DEFAULT SETTINGS
---------------------------------------------------------------------------------
+----------------------------------------
 function setDefaults()
 	local function updateTable(source, destination)
 		for k, v in pairs(source) do
@@ -24,9 +24,9 @@ function setDefaults()
 	save()
 end
 
---------------------------------------------------------------------------------
+----------------------------------------
 -- RESET TO DEFAULT SETTINGS
---------------------------------------------------------------------------------
+----------------------------------------
 function reset()
 	print("Resetting to default settings...")
 	for k,v in pairs(settings) do
@@ -37,9 +37,9 @@ function reset()
 	setDefaults(defaults)
 end
 
---------------------------------------------------------------------------------
+----------------------------------------
 -- SAVE SETTINGS
---------------------------------------------------------------------------------
+----------------------------------------
 function save()
 	print("Saving Settings...")
 	local tempTable = {}
@@ -66,9 +66,9 @@ function save()
 	end
 end
 
---------------------------------------------------------------------------------
+----------------------------------------
 -- LOAD SETTINGS
---------------------------------------------------------------------------------
+----------------------------------------
 function load()
 	local p1 = system.pathForFile("settings.data", system.DocumentsDirectory)
 	local p2 = system.pathForFile("_settings.data", system.DocumentsDirectory)
@@ -105,18 +105,18 @@ function load()
 	end
 end
 
---------------------------------------------------------------------------------
+----------------------------------------
 -- UNINITIALIZED ALERT:
---------------------------------------------------------------------------------
+----------------------------------------
 local function initAlert()
 	error("You must call settings.init() before you can call settings.save() or settings.reset().")
 end
 settings.save = initAlert
 settings.reset = initAlert
 
---------------------------------------------------------------------------------
+----------------------------------------
 -- SET HASH KEY:
---------------------------------------------------------------------------------
+----------------------------------------
 function settings.setKey(self, key)
 	if key == nil then key = self end
 	if type(key) ~= "string" then
@@ -129,10 +129,11 @@ function settings.setKey(self, key)
 	end
 end
 
---------------------------------------------------------------------------------
+----------------------------------------
 -- INITIALIZE SETTINGS:
---------------------------------------------------------------------------------
+----------------------------------------
 function settings.init(self, params)
+	settings.setKey(hashKey)
 	if params == nil and self ~= settings then params = self end
 	defaults = params or {}
 	settings.save = save
