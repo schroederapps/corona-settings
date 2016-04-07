@@ -47,13 +47,13 @@ settings.save()
 ## Functions
 
 ### settings.init(defaults)
-Defines your default settings, then overwrites individual key/value pairs with saved settings, if any exist. You can safely introduce new required settings values in subsequent versions of the same app. You can only call `settings.init()` once, preferably at the top of your `main.lua` just after requring the module.
-
-#### Arguments
-This function takes a single argument, `defaults`, which is a table containing key/value pairs representing your default settings.
-
-#### Example
-```lua
+> Defines your default settings, then overwrites individual key/value pairs with saved settings, if any exist. You can safely introduce new required settings values in subsequent versions of the same app. You can only call `settings.init()` once, preferably at the top of your `main.lua` just after requring the module.
+>
+> #### Arguments
+> This function takes a single argument, `defaults`, which is a table containing key/value pairs representing your default settings.
+>
+> #### Example
+> ```lua
 settings.init({
   playCount = 0,
   hiScore = 0,
@@ -64,36 +64,36 @@ settings.init({
   }
 })
 ```
-
+>
 ### settings.save()
 Converts your settings table to a JSON string, then saves that string (`settings.data`) and a hash of it (`_settings.data`) to the app's documents directory.
-
-#### Arguments
-This function accepts no arguments.
-
-#### Example
+>
+> #### Arguments
+> This function accepts no arguments.
+>
+> #### Example
 ```lua
 settings.save()
 ```
 
 ### settings.reset()
-Removes any saved settings and reverts settings back to your pre-defined defaults. Cannot be undone.
-
-#### Arguments
-This function accepts no arguments.
-
-#### Example
+> Removes any saved settings and reverts settings back to your pre-defined defaults. Cannot be undone.
+>
+> #### Arguments
+> This function accepts no arguments.
+>
+> #### Example
 ```lua
 settings.reset()
 ```
 
 ### settings.setKey(key)
-(Optional) Defines the key used to seed the HMAC generation for the hashed settings save file. This function can only be called once, and must happen before calling settings.init()
-
-#### Arguments
-This function accepts a single argument, `key`, which must be a string.
-
-#### Example
+> (Optional) Defines the key used to seed the HMAC generation for the hashed settings save file. This function can only be called once, and must happen before calling settings.init()
+>
+> #### Arguments
+> This function accepts a single argument, `key`, which must be a string.
+>
+> #### Example
 ```lua
 settings.setKey("myKey")
 ```
