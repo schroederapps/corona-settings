@@ -2,7 +2,7 @@ local settings = {}
 local json = require("json")
 local crypto = require("crypto")
 local mime = require("mime")
-local hashKey = "schroederapps"
+local hashKey = nil
 local defaults = {}
 
 local setDefaults, reset, save, load
@@ -133,7 +133,7 @@ end
 -- INITIALIZE SETTINGS:
 ----------------------------------------
 function settings.init(self, params)
-	settings.setKey(hashKey)
+	if hashKey == nil then settings.setKey("schroederapps") end
 	if params == nil and self ~= settings then params = self end
 	defaults = params or {}
 	settings.save = save
