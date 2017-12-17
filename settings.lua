@@ -13,10 +13,14 @@ function setDefaults()
 	local function updateTable(source, destination)
 		for k, v in pairs(source) do
 			if type(v) == "table" then
-				destination[k] = destination[k] or {}
-				updateTable(v, destination[k])
-			else
-				destination[k] = destination[k] or v
+				if destination[k] == nil then
+          destination[k] = {}
+        end
+        if type(destination[k]) == 'table' then
+		      updateTable(v, destination[k])
+        end
+			elseif destination[k] == nil then
+				destination[k] = v
 			end
 		end
 	end
