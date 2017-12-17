@@ -53,7 +53,7 @@ settings.save()
 > This function takes a single argument, `defaults`, which is a table containing key/value pairs representing your default settings.
 >
 > #### Example
-> ```lua
+```lua
 settings.init({
   playCount = 0,
   hiScore = 0,
